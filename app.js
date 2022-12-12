@@ -1,12 +1,25 @@
 const form = document.querySelector('form')
-form.addEventListener('submit', addTask)
 const tasksList = document.querySelector('.collection')
+const delTasksBtn = document.querySelector('#clear-all-tasks')
+
+form.addEventListener('submit', addTask)
 tasksList.addEventListener('click', deleteTask)
+delTasksBtn.addEventListener('click', deleteTasks)
 
 function deleteTask(event){
     if(event.target.textContent == 'X'){
         if(confirm("Do you want to delete this task?")){
             event.target.parentElement.remove();
+        }
+    }
+}
+
+function deleteTasks(){
+    if(confirm("Do you want to delete all tasks?")){
+    // tasksList.innerHTML = '';
+    console.log(tasksList.firstElementChild);
+    while(tasksList.firstChild){
+        tasksList.removeChild(tasksList.firstChild);
         }
     }
 }
